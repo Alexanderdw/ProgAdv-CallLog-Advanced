@@ -13,11 +13,11 @@ In de les zijn we vertrokken vanuit de  [CallLog Oefening](https://github.com/Ba
  
 ### Database
  Voor de database hebben we een MySQL database gebruikt, hier heb ik een nieuwe tabel in aangemaakt en als volgt geconfigureerd:
- ![CallLogDB](http://imgur.com/GJ84V47)
+ ![CallLogDB](http://imgur.com/GJ84V47.jpg)
 
 ### Resultaat
 In het volgend voorbeeldje kan u zien dat er succesvol data in de tabel wordt geplaatst nadat de applicatie wordt gerunt.
-![CallLog](http://imgur.com/5xaQCEj)
+![CallLog](http://imgur.com/5xaQCEj.jpg)
 
 
 
