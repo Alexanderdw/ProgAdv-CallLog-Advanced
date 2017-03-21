@@ -45,9 +45,6 @@ public class CallLogDAO {
     }
 
     public void insertCallLogList(Collection<CallLog> callLogList) {
-        // do create connection stuff
-
-        // create statement
 
         try (Connection con = getConnection();
              PreparedStatement stmt = con
