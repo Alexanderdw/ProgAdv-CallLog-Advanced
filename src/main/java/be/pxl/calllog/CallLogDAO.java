@@ -1,8 +1,6 @@
 package be.pxl.calllog;
 
-import java.io.*;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 /**
@@ -51,13 +49,13 @@ public class CallLogDAO {
 
         // create statement
 
-        try(Connection con = getConnection();
-        PreparedStatement stmt = con
-            .prepareStatement("INSERT INTO CallLog(id, naam, datum, bedrijf, omschrijving, prio, status)" +
-                                " VALUES ( ?, ?, ?, ?, ?, ?, ?)")){
-            for(CallLog callLog: callLogList){
+        try (Connection con = getConnection();
+             PreparedStatement stmt = con
+                     .prepareStatement("INSERT INTO CallLog(id, naam, datum, bedrijf, omschrijving, prio, status)" +
+                             " VALUES ( ?, ?, ?, ?, ?, ?, ?)")) {
+            for (CallLog callLog : callLogList) {
                 stmt.setInt(1, callLog.getId());
-                stmt.setString(2,callLog.getNaam());
+                stmt.setString(2, callLog.getNaam());
                 stmt.setDate(3, new java.sql.Date(callLog.getDatum().getTime()));
                 stmt.setString(4, callLog.getBedrijf());
                 stmt.setString(5, callLog.getOmschrijving());
@@ -70,8 +68,8 @@ public class CallLogDAO {
         }
     }
 
-    private Connection getConnection() throws SQLException{
-        return DriverManager.getConnection(url,user,password);
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(url, user, password);
     }
 
 }
