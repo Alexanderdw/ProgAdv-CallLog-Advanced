@@ -5,7 +5,7 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
     <display-name>CallLogAdvanced</display-name>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
     </welcome-file-list>
 
 
@@ -32,9 +32,8 @@
     <jsp-config>
         <jsp-property-group>
             <description>Header and Footer settings</description>
-            <url-pattern>/WEB-INF/views/*</url-pattern>
-            <url-pattern>/index.jsp</url-pattern>
-            <include-prelude>WEB-INF/views/Header.html</include-prelude>
+            <url-pattern>/*</url-pattern>
+            <include-prelude>/WEB-INF/views/Header.html</include-prelude>
             <include-coda>/WEB-INF/views/Footer.html</include-coda>
         </jsp-property-group>
     </jsp-config>

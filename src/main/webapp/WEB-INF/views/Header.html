@@ -1,38 +1,79 @@
-<style>
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Log Database</title>
+    <style>
+        body {
 
-    li {
-        float: left;
-    }
+            margin: 0;
+            position: relative;
 
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
+        }
 
-    li a:hover:not(.active) {
-        background-color: #111;
-    }
+        #bodyDiv{
+            padding-top: 50px;
+        }
 
-    .active {
-        background-color: #4CAF50;
-    }
-</style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+
+        #sticky {
+            width: 100%;
+            padding: 20px 20px 16px;
+            background: rgba(0, 0, 0, .25);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            position: fixed; /*Here's what sticks it*/
+            bottom: 0; /*to the bottom of the body*/
+            left: 0; /*and to the left of the body.*/
+
+            /*EFFECTS*/
+            transition: .33s linear;
+        }
+
+        #sticky:hover {
+            background: black;
+        }
+    </style>
+</head>
+<body>
 <ul>
-    <li><a class="active" href="index.jsp">Home</a></li>
-    <li><a href="SearchView.jsp">Search</a></li>
+    <li><a class="active" href="">Home</a></li>
+    <li><a href="Search">Search</a></li>
     <li><a href="CreateView.jsp">Create</a></li>
     <li><a href="ImportView.jsp">Import</a></li>
 </ul>
+
+
+

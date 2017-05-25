@@ -1,10 +1,11 @@
 # Algemene oefening Programming Advanced: Java
 
+## Deel 1: JDBC 
 In de les zijn we vertrokken vanuit de  [CallLog Oefening](https://github.com/BartClijsnerPXL/PxlJavaAdvanced-CallLog/tree/multithreading) van het vorige semester Java Advanced.
 
-## JDBC
-
 ### Aangepaste en nieuwe classes
+
+zie package be.pxl.calllog.app 
 
  - pom.xml : Dependency toegevoegd voor de MySQL driver.
  - resources: application.properties aangepast en input folder gemaakt.
@@ -17,7 +18,12 @@ In de les zijn we vertrokken vanuit de  [CallLog Oefening](https://github.com/Ba
 
 ### Resultaat
 In het volgend voorbeeldje kan u zien dat er succesvol data in de tabel wordt geplaatst nadat de applicatie wordt gerunt.
-![CallLog](http://imgur.com/5xaQCEj.jpg)
+![CallLog](http://imgur.com/P5aivWf.jpg)
+
+## Deel 2: Webcomponenten
+22/05/2017 hebben we een extra opgave gekregen op blackboard.
+
+
 
 
 
