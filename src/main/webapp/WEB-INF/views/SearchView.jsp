@@ -6,76 +6,46 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="bodyDiv">
-    <h1>Zoek op naam, datum, bedrijf, of status.</h1>
+    <h1>Search for call logs on id, name, company or status.</h1>
     <form method="POST">
-        <input type="text" name="search">
-        <input type="submit" value="Search">
+        <input type="text" name="search" />
+        <input type="submit" value="Search" />
     </form>
-    <br />
-    <br />
+    <br/>
+    <br/>
 
-    <table class="scroll">
-        <thead>
-        <tr>
-            <th>Head 1</th>
-            <th>Head 2</th>
-            <th>Head 3</th>
-            <th>Head 4</th>
-            <th>Head 5</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 2</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Lorem ipsum dolor sit amet.</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 2</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 2</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 2</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 2</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 1</td>
-            <td>Content 2</td>
-            <td>Content 3</td>
-            <td>Content 4</td>
-            <td>Content 5</td>
-        </tr>
-        </tbody>
-    </table>
+    <p>You may also review all call logs in the table below.</p>
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Details</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${CallLogs}" var="CallLog" >
+                <tr>
+                    <td>${CallLog.id}</td>
+                    <td>${CallLog.naam}</td>
+                    <td>${CallLog.bedrijf}</td>
+                    <td>${CallLog.status}</td>
+                    <td>
+                        <a href="Search?id=${CallLog.id}">Show Details</a>
+                    </td>
+                    <td>
+                        <a href="Delete?id=${CallLog.id}">Delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 

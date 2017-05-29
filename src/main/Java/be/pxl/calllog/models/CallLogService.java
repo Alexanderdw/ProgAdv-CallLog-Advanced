@@ -10,7 +10,7 @@ import java.util.List;
  * @author Jordy Swinnen
  */
 public class CallLogService implements ICallLogService {
-    CallLogDao dao = null;
+    private CallLogDao dao = null;
 
     public CallLogService() {
         dao = new CallLogDao();
@@ -30,12 +30,8 @@ public class CallLogService implements ICallLogService {
 
         try (Connection con = dao.getConnection();
              PreparedStatement stmt = con
-                     .prepareStatement("SELECT * FROM calllog WHERE Name " +
-                             "LIKE %?% OR Datum LIKE %?% or Bedrijf LIKE %?% or Status LIKE %?%")) {
-            stmt.setString(1, "%" + value + "%");
-            stmt.setString(2, "%" + value + "%");
-            stmt.setString(3, "%" + value + "%");
-            stmt.setString(4, "%" + value + "%");
+                     .prepareStatement("SELECT * FROM calllog WHERE concat_ws(', ',Name, Datum, Bedrijf, Status) LIKE ?")) {
+            stmt.setString(1, "'%" + value + "%'");
             try (ResultSet rs = stmt.executeQuery()) {
                 callLogList = fillWithResultSet(rs);
                 return callLogList;
@@ -63,20 +59,47 @@ public class CallLogService implements ICallLogService {
         }
     }
 
+    @Override
+    public CallLogBean getCallLogById(int Id) {
+        CallLogBean logBean = null;
+        try (Connection con = dao.getConnection();
+             PreparedStatement stmt = con
+                     .prepareStatement("SELECT * FROM calllog WHERE id = ?")) {
+            stmt.setInt(1, Id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    logBean = new CallLogBean();
+                    logBean.setId(rs.getInt(1));
+                    logBean.setNaam(rs.getString(2));
+                    logBean.setDatum(rs.getDate(3));
+                    logBean.setBedrijf(rs.getString(4));
+                    logBean.setOmschrijving(rs.getString(5));
+                    logBean.setPrio(rs.getInt(6));
+                    logBean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return logBean;
+    }
+
     private List<CallLogBean> fillWithResultSet(ResultSet rs) throws SQLException {
         List<CallLogBean> callLogList = new ArrayList<>();
 
         while (rs.next()) {
-            CallLogBean bean = new CallLogBean();
-            bean.setId(rs.getInt(1));
-            bean.setNaam(rs.getString(2));
-            bean.setDatum(rs.getDate(3));
-            bean.setBedrijf(rs.getString(4));
-            bean.setOmschrijving(rs.getString(5));
-            bean.setPrio(rs.getInt(6));
-            bean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
+            CallLogBean logBean = new CallLogBean();
+            logBean.setId(rs.getInt(1));
+            logBean.setNaam(rs.getString(2));
+            logBean.setDatum(rs.getDate(3));
+            logBean.setBedrijf(rs.getString(4));
+            logBean.setOmschrijving(rs.getString(5));
+            logBean.setPrio(rs.getInt(6));
+            logBean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
 
-            callLogList.add(bean);
+            callLogList.add(logBean);
 
         }
         return callLogList;

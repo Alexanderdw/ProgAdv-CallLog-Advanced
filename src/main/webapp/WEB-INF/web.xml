@@ -29,6 +29,26 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <!--suppress ServletWithoutMappingInspection -->
+        <servlet-name>DeleteControllerServlet</servlet-name>
+        <servlet-class>
+            be.pxl.calllog.controllers.DeleteControllerServlet
+        </servlet-class>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://127.0.0.1/CallLogDB?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value/>
+        </init-param>
+    </servlet>
+
     <jsp-config>
         <jsp-property-group>
             <description>Header and Footer settings</description>

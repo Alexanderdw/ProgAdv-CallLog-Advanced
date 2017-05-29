@@ -1,10 +1,6 @@
 package be.pxl.calllog.models;
 
-import be.pxl.calllog.app.CallLogStatus;
-
 import java.sql.*;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Jordy Swinnen

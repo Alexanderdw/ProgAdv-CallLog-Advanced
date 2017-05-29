@@ -4,23 +4,18 @@
     <meta charset="UTF-8">
     <title>Call Log Database</title>
     <script>
-        // Change the selector if needed
-        var $table = $('table.scroll'),
-            $bodyCells = $table.find('tbody tr:first').children(),
-            colWidth;
-
-        // Adjust the width of thead cells when window resizes
-        $(window).resize(function() {
-            // Get the tbody columns width array
-            colWidth = $bodyCells.map(function() {
-                return $(this).width();
-            }).get();
-
-            // Set the width of thead columns
-            $table.find('thead tr').children().each(function(i, v) {
-                $(v).width(colWidth[i]);
-            });
-        }).resize(); // Trigger resize handler
+        var OSName="";
+        if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+        if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+        if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+        if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+        if (navigator.userAgent.indexOf("Android")!=-1)
+            OSName="Android";
+        if (navigator.userAgent.indexOf("iPhone")!=-1 ||
+            navigator.userAgent.indexOf("iPod")!=-1 ||
+            navigator.userAgent.indexOf("iPad")!=-1)
+            OSName="IOS"
+        $('body').addClass(OSName);
     </script>
     <style>
         body {
@@ -85,38 +80,21 @@
             background: black;
         }
 
-        table.scroll {
-            width: 100%; /* Optional */
-            /* border-collapse: collapse; */
+        table {
+            border-collapse: collapse;
             border-spacing: 0;
-            border: 2px solid black;
+            width: 100%;
+            border: 1px solid #ddd;
+            height: 500px;
         }
 
-        table.scroll tbody,
-        table.scroll thead { display: block; }
-
-        thead tr th {
-            height: 30px;
-            line-height: 30px;
-            /*text-align: left;*/
+        th, td {
+            border: none;
+            text-align: left;
+            padding: 8px;
         }
 
-        table.scroll tbody {
-            height: 100px;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        tbody { border-top: 2px solid black; }
-
-        tbody td, thead th {
-            width: 20%; /* Optional */
-            border-right: 1px solid black;
-        }
-
-        tbody td:last-child, thead th:last-child {
-            border-right: none;
-        }
+        tr:nth-child(even){background-color: #f2f2f2}
 
     </style>
 </head>

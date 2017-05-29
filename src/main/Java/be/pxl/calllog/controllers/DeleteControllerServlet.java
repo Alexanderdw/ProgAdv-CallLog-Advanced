@@ -12,33 +12,21 @@ import javax.servlet.http.*;
  * @author Jordy Swinnen
  */
 
-@WebServlet(loadOnStartup = 1, name = "SearchControllerServlet", value = "/Search")
-public class SearchControllerServlet extends HttpServlet {
+@WebServlet(name = "DeleteControllerServlet", value = "/Delete")
+public class DeleteControllerServlet extends HttpServlet {
     private CallLogService service = new CallLogService();
-    private List<CallLogBean> beanList = new ArrayList<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        if (id == null) {
-            beanList = service.getAll();
-            req.setAttribute("CallLogs", beanList);
-            req.getRequestDispatcher("/WEB-INF/views/SearchView.jsp").forward(req, resp);
-        } else {
             CallLogBean logBean = service.getCallLogById(Integer.parseInt(id));
             req.setAttribute("CallLog", logBean);
-            req.getRequestDispatcher("/WEB-INF/views/SearchDetail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/DeleteView.jsp").forward(req, resp);
         }
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO: 30/05/2017  Nakijken waarom er geen tabel terug komt.
-        String value = req.getParameter("search");
-        beanList = service.search(value);
-        req.setAttribute("CallLogs", beanList);
-        req.getRequestDispatcher("/WEB-INF/views/SearchResult.jsp").forward(req, resp);
+        // TODO: 30/05/2017 DELETE schrijven in service 
     }
 
     @Override
@@ -60,7 +48,6 @@ public class SearchControllerServlet extends HttpServlet {
 
     @Override
     public void destroy() {
-        beanList = null;
         service = null;
     }
 }
