@@ -27,11 +27,15 @@ public class CallLogService implements ICallLogService {
     @Override
     public List<CallLogBean> search(String value) {
         List<CallLogBean> callLogList = null;
+        value.replace("!", "!!")
+                .replace("%", "!%")
+                .replace("_", "!_")
+                .replace("[", "![");
 
         try (Connection con = dao.getConnection();
              PreparedStatement stmt = con
-                     .prepareStatement("SELECT * FROM calllog WHERE concat_ws(', ',Name, Datum, Bedrijf, Status) LIKE ?")) {
-            stmt.setString(1, "'%" + value + "%'");
+                     .prepareStatement("SELECT * FROM calllog WHERE concat_ws(', ',Naam, Datum, Bedrijf, Status) LIKE ?")) {
+            stmt.setString(1, "%" + value + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 callLogList = fillWithResultSet(rs);
                 return callLogList;

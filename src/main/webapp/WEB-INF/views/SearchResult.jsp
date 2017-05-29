@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="bodyDiv">
     <h1>Search Result</h1>
+    <h2>For: "${Search}"</h2>
     <div style="overflow-x:auto;">
         <table>
             <thead>

@@ -34,10 +34,10 @@ public class SearchControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO: 30/05/2017  Nakijken waarom er geen tabel terug komt.
         String value = req.getParameter("search");
         beanList = service.search(value);
         req.setAttribute("CallLogs", beanList);
+        req.setAttribute("Search",value);
         req.getRequestDispatcher("/WEB-INF/views/SearchResult.jsp").forward(req, resp);
     }
 
