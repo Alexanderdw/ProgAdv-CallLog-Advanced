@@ -10,5 +10,11 @@ import javax.servlet.http.*;
 /**
  * @author Jordy Swinnen
  */
-public class CreateControllerServlet {
+@WebServlet("/Create")
+public class CreateControllerServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/views/CreateView.jsp").forward(req, resp);
+    }
 }

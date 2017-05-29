@@ -1,10 +1,10 @@
 package be.pxl.calllog.models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import be.pxl.calllog.app.CallLogStatus;
+
+import java.sql.*;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Jordy Swinnen
@@ -47,29 +47,9 @@ public class CallLogDao {
         this.password = password;
     }
 
-    public void insertCallLogList(Collection<CallLogBean> callLogList) {
-
-        try (Connection con = getConnection();
-             PreparedStatement stmt = con
-                     .prepareStatement("INSERT INTO CallLog(id, naam, datum, bedrijf, omschrijving, prio, status)" +
-                             " VALUES ( ?, ?, ?, ?, ?, ?, ?)")) {
-            for (CallLogBean callLog : callLogList) {
-                stmt.setInt(1, callLog.getId());
-                stmt.setString(2, callLog.getNaam());
-                stmt.setDate(3, new java.sql.Date(callLog.getDatum().getTime()));
-                stmt.setString(4, callLog.getBedrijf());
-                stmt.setString(5, callLog.getOmschrijving());
-                stmt.setInt(6, callLog.getPrio());
-                stmt.setString(7, String.valueOf(callLog.getStatus()));
-                stmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
+
 
 }

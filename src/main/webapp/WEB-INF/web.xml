@@ -13,7 +13,7 @@
         <!--suppress ServletWithoutMappingInspection -->
         <servlet-name>SearchControllerServlet</servlet-name>
         <servlet-class>
-            be.pxl.calllog.controllers.SearchControllerServlet;
+            be.pxl.calllog.controllers.SearchControllerServlet
         </servlet-class>
         <init-param>
             <param-name>url</param-name>
@@ -25,7 +25,7 @@
         </init-param>
         <init-param>
             <param-name>password</param-name>
-            <param-value> </param-value>
+            <param-value/>
         </init-param>
     </servlet>
 
