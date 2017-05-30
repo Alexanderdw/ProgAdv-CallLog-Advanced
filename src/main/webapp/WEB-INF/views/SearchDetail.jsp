@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="bodyDiv">
-    <h1>Call Log Detail</h1>
+    <h1>Call Log Details for naam: ${CallLog.naam}</h1>
     id: ${CallLog.id} <br/>
     naam: ${CallLog.naam} <br/>
     datum: ${CallLog.datum} <br/>

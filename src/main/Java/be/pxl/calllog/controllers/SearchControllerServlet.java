@@ -34,10 +34,10 @@ public class SearchControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String value = req.getParameter("search");
+        String value = req.getParameter("logSearch");
         beanList = service.search(value);
         req.setAttribute("CallLogs", beanList);
-        req.setAttribute("Search",value);
+        req.setAttribute("Search", value);
         req.getRequestDispatcher("/WEB-INF/views/SearchResult.jsp").forward(req, resp);
     }
 

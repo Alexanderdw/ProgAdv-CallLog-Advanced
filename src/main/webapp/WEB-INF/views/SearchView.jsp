@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="bodyDiv">
-    <h1>Search for call logs on id, name, company or status.</h1>
+    <h1>Search for call logs on name, date, company or status.</h1>
     <form method="POST">
-        <input type="text" name="search" />
+        <input type="Search" name="logSearch" />
         <input type="submit" value="Search" />
     </form>
     <br/>

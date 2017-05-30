@@ -41,6 +41,7 @@ public class CallLogService implements ICallLogService {
                 return callLogList;
             }
 
+
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -64,12 +65,13 @@ public class CallLogService implements ICallLogService {
     }
 
     @Override
-    public CallLogBean getCallLogById(int Id) {
+    public CallLogBean getCallLogById(int id) {
         CallLogBean logBean = null;
         try (Connection con = dao.getConnection();
              PreparedStatement stmt = con
-                     .prepareStatement("SELECT * FROM calllog WHERE id = ?")) {
-            stmt.setInt(1, Id);
+                     .prepareStatement("SELECT * FROM calllog " +
+                             "WHERE id = ?")) {
+            stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     logBean = new CallLogBean();
@@ -88,6 +90,23 @@ public class CallLogService implements ICallLogService {
             return null;
         }
         return logBean;
+    }
+
+    @Override
+    public boolean deleteCallLogById(int id) {
+        try (Connection con = dao.getConnection();
+             PreparedStatement stmt = con
+                     .prepareStatement("DELETE FROM calllog " +
+                             "WHERE id = ?")) {
+            stmt.setInt(1,id);
+            stmt.execute();
+            con.close();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private List<CallLogBean> fillWithResultSet(ResultSet rs) throws SQLException {

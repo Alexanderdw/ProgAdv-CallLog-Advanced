@@ -19,14 +19,24 @@ public class DeleteControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-            CallLogBean logBean = service.getCallLogById(Integer.parseInt(id));
-            req.setAttribute("CallLog", logBean);
-            req.getRequestDispatcher("/WEB-INF/views/DeleteView.jsp").forward(req, resp);
-        }
+        CallLogBean logBean = service.getCallLogById(Integer.parseInt(id));
+        req.setAttribute("CallLog", logBean);
+        req.getRequestDispatcher("/WEB-INF/views/DeleteView.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO: 30/05/2017 DELETE schrijven in service 
+        String id = req.getParameter("delId");
+        boolean success;
+        success = service.deleteCallLogById(Integer.parseInt(id));
+        if (success) {
+            req.setAttribute("Message", "was succesfull!");
+            req.getRequestDispatcher("/WEB-INF/views/DeleteResult.jsp").forward(req, resp);
+        } else {
+            req.setAttribute("Message", " Failed...");
+            req.getRequestDispatcher("/WEB-INF/views/DeleteResult.jsp").forward(req, resp);
+        }
+
     }
 
     @Override

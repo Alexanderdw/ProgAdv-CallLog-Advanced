@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="bodyDiv">
-    <h1>Delete</h1>
+    <h1>Delete ${CallLog.naam}?</h1>
     id: ${CallLog.id} <br/>
     naam: ${CallLog.naam} <br/>
     datum: ${CallLog.datum} <br/>
@@ -20,14 +20,15 @@
         You will not be able to undo changes*
     </div>
     <br/>
-    <form method="post"></form>
-    <input type="button" value="Return"
-           onclick="window.location.href='/CallLogAdvanced/Search'">
-    <input type="submit" value="DELETE"/>
+    <form method="POST">
+        <input type="text" name="delId" value="${CallLog.id}" hidden><br/>
+        <input type="button" value="Return"
+               onclick="window.location.href='/CallLogAdvanced/Search'">
+        <input type="submit" value="DELETE"/>
     </form>
 
     <div style="position: fixed; bottom: 60px;">
         *However you may manually insert a deleted (or new) row again <a href="/CallLogAdvanced/Create">here</a>.
-</div>
+    </div>
 
 </div>
