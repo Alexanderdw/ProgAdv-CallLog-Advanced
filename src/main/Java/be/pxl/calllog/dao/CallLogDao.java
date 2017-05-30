@@ -1,4 +1,4 @@
-package be.pxl.calllog.models;
+package be.pxl.calllog.dao;
 
 import java.sql.*;
 

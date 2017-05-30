@@ -1,6 +1,9 @@
-package be.pxl.calllog.models;
+package be.pxl.calllog.services;
 
 import be.pxl.calllog.app.CallLogStatus;
+import be.pxl.calllog.dao.CallLogDao;
+import be.pxl.calllog.interfaces.CallLogService;
+import be.pxl.calllog.models.CallLogBean;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,10 +12,10 @@ import java.util.List;
 /**
  * @author Jordy Swinnen
  */
-public class CallLogService implements ICallLogService {
+public class CallLogServiceImpl implements CallLogService {
     private CallLogDao dao = null;
 
-    public CallLogService() {
+    public CallLogServiceImpl() {
         dao = new CallLogDao();
     }
 

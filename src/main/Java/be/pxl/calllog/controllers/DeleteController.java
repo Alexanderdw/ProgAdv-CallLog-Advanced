@@ -1,9 +1,10 @@
 package be.pxl.calllog.controllers;
 
+import be.pxl.calllog.dao.CallLogDao;
 import be.pxl.calllog.models.*;
+import be.pxl.calllog.services.CallLogServiceImpl;
 
 import java.io.*;
-import java.util.*;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
@@ -14,7 +15,7 @@ import javax.servlet.http.*;
 
 @WebServlet(name = "DeleteController", value = "/Delete")
 public class DeleteController extends HttpServlet {
-    private CallLogService service = new CallLogService();
+    private CallLogServiceImpl service = new CallLogServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

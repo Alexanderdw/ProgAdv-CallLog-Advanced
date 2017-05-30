@@ -2,12 +2,11 @@ package be.pxl.calllog.controllers;
 
 import be.pxl.calllog.app.CallLogStatus;
 import be.pxl.calllog.models.CallLogBean;
-import be.pxl.calllog.models.CallLogDao;
-import be.pxl.calllog.models.CallLogService;
+import be.pxl.calllog.dao.CallLogDao;
+import be.pxl.calllog.services.CallLogServiceImpl;
 
 import java.io.*;
 import java.text.*;
-import java.util.*;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
@@ -17,7 +16,7 @@ import javax.servlet.http.*;
  */
 @WebServlet(name = "CreateController", value = "/Create")
 public class CreateController extends HttpServlet {
-    private CallLogService service = new CallLogService();
+    private CallLogServiceImpl service = new CallLogServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

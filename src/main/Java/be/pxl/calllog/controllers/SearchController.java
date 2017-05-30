@@ -1,6 +1,8 @@
 package be.pxl.calllog.controllers;
 
+import be.pxl.calllog.dao.CallLogDao;
 import be.pxl.calllog.models.*;
+import be.pxl.calllog.services.CallLogServiceImpl;
 
 import java.io.*;
 import java.util.*;
@@ -14,7 +16,7 @@ import javax.servlet.http.*;
 
 @WebServlet(loadOnStartup = 1, name = "SearchController", value = "/Search")
 public class SearchController extends HttpServlet {
-    private CallLogService service = new CallLogService();
+    private CallLogServiceImpl service = new CallLogServiceImpl();
     private List<CallLogBean> beanList = new ArrayList<>();
 
     @Override
