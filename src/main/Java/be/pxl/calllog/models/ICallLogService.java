@@ -14,4 +14,6 @@ public interface ICallLogService {
     CallLogBean getCallLogById(int Id);
 
     boolean deleteCallLogById(int id);
+
+    void insertNewCallLog(CallLogBean logBean);
 }

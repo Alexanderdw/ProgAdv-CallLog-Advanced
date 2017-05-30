@@ -11,10 +11,12 @@ import javax.servlet.http.*;
  * @author Jordy Swinnen
  */
 @WebServlet("/Import")
-public class ImportControllerServlet extends HttpServlet {
+public class ImportController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/views/ImportView.jsp").forward(req, resp);
+        //TODO-Jordy Code import
+
     }
 }

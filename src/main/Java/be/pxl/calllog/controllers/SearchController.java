@@ -12,8 +12,8 @@ import javax.servlet.http.*;
  * @author Jordy Swinnen
  */
 
-@WebServlet(loadOnStartup = 1, name = "SearchControllerServlet", value = "/Search")
-public class SearchControllerServlet extends HttpServlet {
+@WebServlet(loadOnStartup = 1, name = "SearchController", value = "/Search")
+public class SearchController extends HttpServlet {
     private CallLogService service = new CallLogService();
     private List<CallLogBean> beanList = new ArrayList<>();
 

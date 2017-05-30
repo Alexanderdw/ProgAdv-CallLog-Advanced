@@ -22,6 +22,25 @@ In het volgend voorbeeldje kan u zien dat er succesvol data in de tabel wordt ge
 
 ## Deel 2: Webcomponenten
 22/05/2017 hebben we een extra opgave gekregen op blackboard.
+CallLog WebApp met Crud
+
+### 1. Search
+#### Opzoeken van naam, datum, bedrijf en status. Toon de resultaten in grid waar je per element de calllog kan selecteren en verwijderen
+![SearchView](http://imgur.com/oisg3q5.jpg)
+![SearchResult](http://imgur.com/P9Ajh0Y.jpg)
+
+### 1a. Details
+![Details](http://imgur.com/bGSiPZF.jpg)
+
+### 1b. Delete
+![Delete](http://imgur.com/07EXjz5.jpg)
+
+### 2. Create
+#### Aanmaken van een nieuwe calllog in de database
+![Create](http://imgur.com/j0hlHG1.jpg)
+![CreateResult](http://imgur.com/JLymYO4.jpg)
+ 
+
 
 
 

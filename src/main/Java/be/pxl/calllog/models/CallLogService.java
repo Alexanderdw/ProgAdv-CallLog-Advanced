@@ -98,7 +98,7 @@ public class CallLogService implements ICallLogService {
              PreparedStatement stmt = con
                      .prepareStatement("DELETE FROM calllog " +
                              "WHERE id = ?")) {
-            stmt.setInt(1,id);
+            stmt.setInt(1, id);
             stmt.execute();
             con.close();
             return true;
@@ -109,22 +109,43 @@ public class CallLogService implements ICallLogService {
         }
     }
 
-    private List<CallLogBean> fillWithResultSet(ResultSet rs) throws SQLException {
-        List<CallLogBean> callLogList = new ArrayList<>();
+    @Override
+    public void insertNewCallLog(CallLogBean logBean) {
+        try (Connection con = dao.getConnection();
+             PreparedStatement stmt = con
+                     .prepareStatement("INSERT INTO CallLog(id, naam, datum, bedrijf, omschrijving, prio, status)" +
+                             " VALUES ( ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, logBean.getId());
+            stmt.setString(2, logBean.getNaam());
+            stmt.setDate(3, new java.sql.Date(logBean.getDatum().getTime()));
+            stmt.setString(4, logBean.getBedrijf());
+            stmt.setString(5, logBean.getOmschrijving());
+            stmt.setInt(6, logBean.getPrio());
+            stmt.setString(7, String.valueOf(logBean.getStatus()));
+            stmt.executeUpdate();
 
-        while (rs.next()) {
-            CallLogBean logBean = new CallLogBean();
-            logBean.setId(rs.getInt(1));
-            logBean.setNaam(rs.getString(2));
-            logBean.setDatum(rs.getDate(3));
-            logBean.setBedrijf(rs.getString(4));
-            logBean.setOmschrijving(rs.getString(5));
-            logBean.setPrio(rs.getInt(6));
-            logBean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
-
-            callLogList.add(logBean);
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return callLogList;
     }
-}
+
+
+        private List<CallLogBean> fillWithResultSet (ResultSet rs) throws SQLException {
+            List<CallLogBean> callLogList = new ArrayList<>();
+
+            while (rs.next()) {
+                CallLogBean logBean = new CallLogBean();
+                logBean.setId(rs.getInt(1));
+                logBean.setNaam(rs.getString(2));
+                logBean.setDatum(rs.getDate(3));
+                logBean.setBedrijf(rs.getString(4));
+                logBean.setOmschrijving(rs.getString(5));
+                logBean.setPrio(rs.getInt(6));
+                logBean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
+
+                callLogList.add(logBean);
+
+            }
+            return callLogList;
+        }
+    }

@@ -12,8 +12,8 @@ import javax.servlet.http.*;
  * @author Jordy Swinnen
  */
 
-@WebServlet(name = "DeleteControllerServlet", value = "/Delete")
-public class DeleteControllerServlet extends HttpServlet {
+@WebServlet(name = "DeleteController", value = "/Delete")
+public class DeleteController extends HttpServlet {
     private CallLogService service = new CallLogService();
 
     @Override

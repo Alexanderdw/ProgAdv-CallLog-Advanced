@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>Call Log Database</title>
     <script>
-        var OSName="";
-        if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-        if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-        if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-        if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-        if (navigator.userAgent.indexOf("Android")!=-1)
-            OSName="Android";
-        if (navigator.userAgent.indexOf("iPhone")!=-1 ||
-            navigator.userAgent.indexOf("iPod")!=-1 ||
-            navigator.userAgent.indexOf("iPad")!=-1)
-            OSName="IOS"
+        var OSName = "";
+        if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";
+        if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";
+        if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
+        if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
+        if (navigator.userAgent.indexOf("Android") != -1)
+            OSName = "Android";
+        if (navigator.userAgent.indexOf("iPhone") != -1 ||
+            navigator.userAgent.indexOf("iPod") != -1 ||
+            navigator.userAgent.indexOf("iPad") != -1)
+            OSName = "IOS"
         $('body').addClass(OSName);
     </script>
     <style>
@@ -22,6 +22,7 @@
 
             margin: 0;
             position: relative;
+            background-color: beige ;
 
         }
 
@@ -60,6 +61,28 @@
             background-color: #4CAF50;
         }
 
+        form {
+            margin: 10px;
+        }
+
+        form.form-row {
+            margin-top: 10px;
+        }
+
+        label {
+            display: block;
+            text-transform: capitalize;
+        }
+
+        input {
+            border: 1px solid #ddd;
+            padding: 2px 5px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            box-shadow: inset 2px 2px 8px #ddd;
+        }
+
+
         #sticky {
             width: 100%;
             padding: 20px 20px 16px;
@@ -94,7 +117,9 @@
             padding: 8px;
         }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
 
     </style>
 </head>

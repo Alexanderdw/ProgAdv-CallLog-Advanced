@@ -11,9 +11,9 @@
 
     <servlet>
         <!--suppress ServletWithoutMappingInspection -->
-        <servlet-name>SearchControllerServlet</servlet-name>
+        <servlet-name>SearchController</servlet-name>
         <servlet-class>
-            be.pxl.calllog.controllers.SearchControllerServlet
+            be.pxl.calllog.controllers.SearchController
         </servlet-class>
         <init-param>
             <param-name>url</param-name>
@@ -31,9 +31,29 @@
 
     <servlet>
         <!--suppress ServletWithoutMappingInspection -->
-        <servlet-name>DeleteControllerServlet</servlet-name>
+        <servlet-name>DeleteController</servlet-name>
         <servlet-class>
-            be.pxl.calllog.controllers.DeleteControllerServlet
+            be.pxl.calllog.controllers.DeleteController
+        </servlet-class>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://127.0.0.1/CallLogDB?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value/>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <!--suppress ServletWithoutMappingInspection -->
+        <servlet-name>CreateController</servlet-name>
+        <servlet-class>
+            be.pxl.calllog.controllers.CreateController
         </servlet-class>
         <init-param>
             <param-name>url</param-name>
