@@ -2,6 +2,7 @@ package be.pxl.calllog.controllers;
 
 import be.pxl.calllog.app.CallLog;
 import be.pxl.calllog.app.CallLogFactory;
+import be.pxl.calllog.dao.CallLogDao;
 import be.pxl.calllog.models.CallLogBean;
 import be.pxl.calllog.services.CallLogServiceImpl;
 
@@ -40,6 +41,24 @@ public class ImportController extends HttpServlet {
                 service.insertNewCallLog(callLog);
             }
         }
-        req.getRequestDispatcher("/WEB-INF/views/ImportView.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/views/ImportView.jsp").forward(req, resp);
     }
+
+
+    @Override
+    public void init() throws ServletException {
+        CallLogDao callLogDao = new CallLogDao();
+
+        callLogDao.setUrl(getInitParameter("url"));
+        callLogDao.setUser(getInitParameter("user"));
+        callLogDao.setPassword(getInitParameter("password"));
+
+        service.setDao(callLogDao);
+    }
+
+    @Override
+    public void destroy() {
+        service = null;
+    }
+
 }
