@@ -11,12 +11,18 @@ public class CallLogDao {
     private String password;
 
     public CallLogDao() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public CallLogDao(String url, String user, String password) {
         this.url = url;
         this.user = user;
         this.password = password;
+
     }
 
     public String getUrl() {

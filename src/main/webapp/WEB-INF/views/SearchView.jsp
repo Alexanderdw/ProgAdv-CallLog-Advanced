@@ -10,8 +10,8 @@
 <div id="bodyDiv">
     <h1>Search for call logs on name, date, company or status.</h1>
     <form method="POST">
-        <input type="Search" name="logSearch" />
-        <input type="submit" value="Search" />
+        <input type="Search" name="logSearch"/>
+        <input type="submit" value="Search"/>
     </form>
     <br/>
     <br/>
@@ -30,7 +30,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${CallLogs}" var="CallLog" >
+            <c:forEach items="${CallLogs}" var="CallLog">
                 <tr>
                     <td>${CallLog.id}</td>
                     <td>${CallLog.naam}</td>

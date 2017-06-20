@@ -7,5 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="bodyDiv">
+    <h1>Insert</h1>
 
+    <form METHOD="post">
+        <input type="file" name="file" accept=".csv">
+        <input type="submit">
+    </form>
 </div>

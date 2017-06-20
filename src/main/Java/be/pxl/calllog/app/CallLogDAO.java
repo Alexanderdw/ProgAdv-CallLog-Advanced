@@ -48,7 +48,6 @@ public class CallLogDAO {
     }
 
     public void insertCallLogList(Collection<CallLog> callLogList) {
-
         try (Connection con = getConnection();
              PreparedStatement stmt = con
                      .prepareStatement("INSERT INTO CallLog(id, naam, datum, bedrijf, omschrijving, prio, status)" +

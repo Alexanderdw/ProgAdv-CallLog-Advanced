@@ -44,12 +44,6 @@ public class DeleteController extends HttpServlet {
     public void init() throws ServletException {
         CallLogDao callLogDao = new CallLogDao();
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
         callLogDao.setUrl(getInitParameter("url"));
         callLogDao.setUser(getInitParameter("user"));
         callLogDao.setPassword(getInitParameter("password"));

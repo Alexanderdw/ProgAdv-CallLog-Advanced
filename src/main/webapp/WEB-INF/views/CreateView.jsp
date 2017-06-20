@@ -11,7 +11,7 @@
     <form method="POST">
         <div class="form-row">
             <label for="id">id</label>
-            <input id="id" name="id" type="number" required="required" />
+            <input id="id" name="id" type="number" required="required"/>
         </div>
         <div class="form-row">
             <label for="naam">Name</label>
@@ -38,7 +38,7 @@
             <select id="status" name="status">
                 <option value="OPEN">OPEN</option>
                 <option value="IN PROGRESS">IN_PROGRESS</option>
-                <option value="IGNORE" >IGNORE</option>
+                <option value="IGNORE">IGNORE</option>
                 <option value="CLOSED">CLOSED</option>
                 <option value="" selected>NULL</option>
             </select>

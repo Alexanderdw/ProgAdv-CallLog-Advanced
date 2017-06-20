@@ -1,5 +1,6 @@
 package be.pxl.calllog.services;
 
+import be.pxl.calllog.app.CallLog;
 import be.pxl.calllog.app.CallLogStatus;
 import be.pxl.calllog.dao.CallLogDao;
 import be.pxl.calllog.interfaces.CallLogService;
@@ -11,6 +12,7 @@ import java.util.List;
 
 /**
  * @author Jordy Swinnen
+ *         https://stackoverflow.com/questions/8247970/using-like-wildcard-in-prepared-statement/8248052#8248052
  */
 public class CallLogServiceImpl implements CallLogService {
     private CallLogDao dao = null;
@@ -40,7 +42,7 @@ public class CallLogServiceImpl implements CallLogService {
                      .prepareStatement("SELECT * FROM calllog WHERE concat_ws(', ',Naam, Datum, Bedrijf, Status) LIKE ?")) {
             stmt.setString(1, "%" + value + "%");
             try (ResultSet rs = stmt.executeQuery()) {
-                callLogList = fillWithResultSet(rs);
+                callLogList = fillListWithObj(rs);
                 return callLogList;
             }
 
@@ -58,7 +60,7 @@ public class CallLogServiceImpl implements CallLogService {
         try (Connection con = dao.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM calllog")) {
-            callLogList = fillWithResultSet(rs);
+            callLogList = fillListWithObj(rs);
 
             return callLogList;
         } catch (SQLException e) {
@@ -132,23 +134,41 @@ public class CallLogServiceImpl implements CallLogService {
         }
     }
 
+    public void insertNewCallLog(CallLog callLog) {
+        try (Connection con = dao.getConnection();
+             PreparedStatement stmt = con
+                     .prepareStatement("INSERT INTO CallLog(id, naam, datum, bedrijf, omschrijving, prio, status)" +
+                             " VALUES ( ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, callLog.getId());
+            stmt.setString(2, callLog.getNaam());
+            stmt.setDate(3, new java.sql.Date(callLog.getDatum().getTime()));
+            stmt.setString(4, callLog.getBedrijf());
+            stmt.setString(5, callLog.getOmschrijving());
+            stmt.setInt(6, callLog.getPrio());
+            stmt.setString(7, String.valueOf(callLog.getStatus()));
+            stmt.executeUpdate();
 
-        private List<CallLogBean> fillWithResultSet (ResultSet rs) throws SQLException {
-            List<CallLogBean> callLogList = new ArrayList<>();
-
-            while (rs.next()) {
-                CallLogBean logBean = new CallLogBean();
-                logBean.setId(rs.getInt(1));
-                logBean.setNaam(rs.getString(2));
-                logBean.setDatum(rs.getDate(3));
-                logBean.setBedrijf(rs.getString(4));
-                logBean.setOmschrijving(rs.getString(5));
-                logBean.setPrio(rs.getInt(6));
-                logBean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
-
-                callLogList.add(logBean);
-
-            }
-            return callLogList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
+    private List<CallLogBean> fillListWithObj(ResultSet rs) throws SQLException {
+        List<CallLogBean> callLogList = new ArrayList<>();
+
+        while (rs.next()) {
+            CallLogBean logBean = new CallLogBean();
+            logBean.setId(rs.getInt(1));
+            logBean.setNaam(rs.getString(2));
+            logBean.setDatum(rs.getDate(3));
+            logBean.setBedrijf(rs.getString(4));
+            logBean.setOmschrijving(rs.getString(5));
+            logBean.setPrio(rs.getInt(6));
+            logBean.setStatus(CallLogStatus.getCallLogStatusType(rs.getString(7)));
+
+            callLogList.add(logBean);
+
+        }
+        return callLogList;
+    }
+}
